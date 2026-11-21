@@ -6,6 +6,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,19 +19,28 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.ciudadalerta.datos.datosEjemplo
 import com.example.ciudadalerta.modelos.Incidencia
-import com.example.ciudadalerta.datos.incidenciasEjemplo
 import com.example.ciudadalerta.ui.componentes.Etiqueta
 import com.example.ciudadalerta.ui.componentes.FotoIncidencia
 import com.example.ciudadalerta.ui.theme.CiudadAlertaTheme
 
 @Composable
-fun PantallaDetalle(incidencia: Incidencia, onVolver: () -> Unit) {
-
+fun PantallaDetalle(
+    incidencia: Incidencia,
+    snackbarHostState: SnackbarHostState,
+    onVolver: () -> Unit,
+    onEditar: () -> Unit,
+    onBorrar: () -> Unit
+) {
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.primaryContainer)
+                .padding(paddingValues)
         ) {
             // imagen en el centro y boton de volver arriba a la izquierda
             Box(
@@ -50,7 +64,7 @@ fun PantallaDetalle(incidencia: Incidencia, onVolver: () -> Unit) {
                         .padding(16.dp)
                         .size(48.dp)
                 ) {
-                    Text("<")
+                    Icon(Icons.Default.ArrowBack, contentDescription = null)
                 }
             }
 
@@ -65,7 +79,7 @@ fun PantallaDetalle(incidencia: Incidencia, onVolver: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -81,10 +95,18 @@ fun PantallaDetalle(incidencia: Incidencia, onVolver: () -> Unit) {
                     style = MaterialTheme.typography.titleLarge
                 )
 
-                Text(
-                    text = "Publicado ${incidencia.fechaHora}",
-                    style = MaterialTheme.typography.labelMedium
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Icon(Icons.Default.DateRange, contentDescription = null,)
+                    Text(
+                        text = "Publicado ${incidencia.fechaHora}",
+                        style = MaterialTheme.typography.labelMedium
+                    )
+                }
+
+
 
                 // Linea separadora
                 Box(
@@ -114,8 +136,32 @@ fun PantallaDetalle(incidencia: Incidencia, onVolver: () -> Unit) {
                         textAlign = TextAlign.Center
                     )
                 }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End)
+                ) {
+                    OutlinedButton(
+                        onClick = onEditar
+                    ) {
+                        Icon(Icons.Default.Edit, contentDescription = null)
+                        Spacer(Modifier.width(8.dp))
+                        Text("Editar")
+                    }
+                    Button(
+                        onClick = onBorrar,
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.error,
+                            contentColor = MaterialTheme.colorScheme.onError
+                        )
+                    ) {
+                        Icon(Icons.Default.Delete, contentDescription = null)
+                        Spacer(Modifier.width(8.dp))
+                        Text("Eliminar")
+                    }
+                }
             }
         }
+    }
 
 }
 
@@ -123,6 +169,12 @@ fun PantallaDetalle(incidencia: Incidencia, onVolver: () -> Unit) {
 @Composable
 fun PantallaDetallePreview() {
     CiudadAlertaTheme {
-        PantallaDetalle(incidencia = incidenciasEjemplo.first(), onVolver = { })
+        PantallaDetalle(
+            incidencia = datosEjemplo.first(),
+            onVolver = { } ,
+            snackbarHostState = SnackbarHostState(),
+            onEditar = {  },
+            onBorrar = { }
+        )
     }
 }

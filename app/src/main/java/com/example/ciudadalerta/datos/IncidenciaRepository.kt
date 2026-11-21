@@ -5,7 +5,7 @@ import com.example.ciudadalerta.modelos.Incidencia
 object IncidenciaRepository {
     private val incidencias = datosEjemplo.toMutableList()
 
-    // le sumamos 1 al tamaño de la lista para evitar empezar por 0
+    // le sumamos 1 al tamaño de la lista para evitar empezar por 0 o repetir id
     private var siguienteId = datosEjemplo.size + 1
 
     fun getIncidencias(): List<Incidencia> = incidencias.toList()
