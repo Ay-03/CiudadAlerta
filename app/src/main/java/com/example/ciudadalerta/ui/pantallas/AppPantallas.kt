@@ -5,7 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.example.ciudadalerta.modelos.incidenciasEjemplo
+import com.example.ciudadalerta.datos.incidenciasEjemplo
 
 @Composable
 fun AppPantallas() {

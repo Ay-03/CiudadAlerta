@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ciudadalerta.modelos.Incidencia
-import com.example.ciudadalerta.modelos.incidenciasEjemplo
+import com.example.ciudadalerta.datos.incidenciasEjemplo
 import com.example.ciudadalerta.ui.componentes.Etiqueta
 import com.example.ciudadalerta.ui.componentes.FotoIncidencia
 import com.example.ciudadalerta.ui.theme.CiudadAlertaTheme

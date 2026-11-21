@@ -1,6 +1,10 @@
-package com.example.ciudadalerta.modelos
+package com.example.ciudadalerta.datos
 
-val incidenciasEjemplo = listOf(
+import com.example.ciudadalerta.modelos.Categoria
+import com.example.ciudadalerta.modelos.Estado
+import com.example.ciudadalerta.modelos.Incidencia
+
+val datosEjemplo = listOf(
     Incidencia(
         1, "Baches en la Calle Av. Madrid", Categoria.BACHES,
         "Bache profundo junto al paso de peatones. Supone un riesgo para bicicletas y " +
