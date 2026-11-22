@@ -109,7 +109,7 @@ fun PantallaLista(
 
                     // Lista de tarjetas
                     LazyColumn(
-                        // 80.dp abajo para que el botón + no tape la última tarjeta
+                        // 80.dp abajo para que el botón + no tape la ultima tarjeta
                         contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 80.dp),                    verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         items(items = incidencias, key = { it.id }) { incidencia ->

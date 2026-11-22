@@ -17,7 +17,7 @@ fun AppPantallas(
     val uiState = viewModel.uiState
     val snackbarHostState = remember { SnackbarHostState() }
 
-    // Si es null se ve la lista; si tiene un id, se ve el detalle de esa incidencia
+    // Si es null se ve la lista si tiene un id, se ve el detalle de esa incidencia
     val seleccionada = uiState.listaIncidencias.find { it.id == uiState.idSeleccionado }
 
     // boton Atras: desde el detalle vuelve a la lista
